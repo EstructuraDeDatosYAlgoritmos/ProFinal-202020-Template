@@ -38,11 +38,12 @@ def main()->None:
         Args: None
         Return: None 
     """
-    DataBase = Init.ejecutarLoadData()
+    database = Init.ejecutarLoadData()
 
     while True:
         inputs = Menu.mainMenu() #imprimir el menu de opciones en consola
-        
+        if inputs == 3:
+            Init.ejecutarDarMejorHorario(database)
 
 if __name__ == "__main__":
     main()

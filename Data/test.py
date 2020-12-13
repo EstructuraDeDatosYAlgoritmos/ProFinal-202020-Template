@@ -2,6 +2,8 @@ import pandas as pd
 
 data = pd.read_csv('taxi-trips-wrvz-psew-subset-large.csv')
 
-taxis = data['company'].unique().tolist()
+print(data.columns)
 
-print(len(taxis))
+taxis = data['dropoff_community_area'].unique().tolist()
+taxis.sort()
+print(taxis)
