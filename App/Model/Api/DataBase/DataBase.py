@@ -55,6 +55,6 @@ class DataBase:
     def getPoints(self,date)->dict:
         return self.points.getDay(date).getPoints()
     
-    def getDays(self,date)->dict:
+    def getDays(self)->dict:
         return self.points.getDays()
  
