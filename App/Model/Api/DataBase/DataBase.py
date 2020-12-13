@@ -25,15 +25,36 @@
 """
 
 from App.Model.Api.Container.DataCompany import DataCompany
+from App.Model.Api.Container.DataPoints import DataPoints
 from App.Model.Api.Container.DataTaxi import DataTaxi
+from App.Model.Api.Concept.Company import Company
+from App.Model.Api.Concept.Wallet import Wallet
+from App.Model.Api.Concept.Taxi import Taxi
+
 class DataBase:
     def __init__(self):
         self.companies = DataCompany()
         self.taxis = DataTaxi()
-
-    def addService(self,service:dict):
-        self.taxis.containsTaxi(service)
-        self.updateCompany(service)
+        self.points = DataPoints()
     
-
+    def getCompany(self,name)->Company:
+        return self.companies.getCompany(name)
     
+    def getCompanies(self)->dict:
+        return self.companies.getCompanies()
+
+    def getTaxi(self,id)->Taxi:
+        return self.taxis.getTaxi(id)
+
+    def getTaxis(self)->dict:
+        return self.taxis.getTaxis()
+
+    def getWallet(self,date,id)->Wallet:
+        return self.points.getDay(date).getWallet(id)
+    
+    def getPoints(self,date)->dict:
+        return self.points.getDay(date).getPoints()
+    
+    def getDays(self,date)->dict:
+        return self.points.getDays()
+ 

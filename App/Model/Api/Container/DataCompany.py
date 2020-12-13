@@ -2,7 +2,8 @@ from DISClib.ADT import map
 from DISClib.DataStructures import mapentry 
 
 from App.Model import Comparation as cmp
-from App.Model.Api.Concept import Company
+from App.Model.Api.Concept.Company import Company
+
 
 class DataCompany:
     def __init__(self):
@@ -12,17 +13,21 @@ class DataCompany:
     def containsCompany(self,name:str)->bool:
         return map.contains(self.companies,name)
 
-    def getCompany(self,name):
+    def getCompany(self,name)->Company:
         companies = self.companies
-        if not self.containsCompany(name):
+        if self.containsCompany(name):
+            company = map.get(companies,name)
+            company = mapentry.getValue(company)
+        else:
             company = Company(name)
             map.put(companies,name,company)
-            self.companies['total'] += 1
-        company = map.get(companies,name)
-        company = mapentry.getValue(company)
+            self.total += 1
+        
         return company
 
-    def updateCompany(self,service:dict):
-        company = self.getCompany(service)    
-        company.addService()
+    def getTotal(self)->int:
+        return self.total
+
+    def getCompanies(self)->dict:
+        return self.companies
         

@@ -29,7 +29,8 @@ import os
 
 
 from App.View import config
-from App.Model import Structure
+from App.Model import Add
+from App.Model.Api.DataBase.DataBase import DataBase
 
 def getFiles()->list:
     files = []
@@ -39,7 +40,7 @@ def getFiles()->list:
     return files
 
 def loadData(filename)->bool:
-    DataBase = Structure.DataBase()
+    Data = DataBase()
     filename = config.data_dir+filename
     dialect = csv.excel()
     dialect.delimiter = ','
@@ -49,9 +50,7 @@ def loadData(filename)->bool:
         cont = 0
         for element in buffer:
             cont += 1
-            DataBase.addService(element)
-            
+            Add.addService(Data,element)
         print(f"\tLineas cargadas: {cont}")
-    print(DataBase.companies)
-    return DataBase
+    return Data
 

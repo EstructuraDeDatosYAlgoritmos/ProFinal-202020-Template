@@ -8,28 +8,15 @@ def compareId(id1, id2):
         return 1
     else:
         return -1
-def compareIdTree(id1, id2):
-    id1 = float(id1)
-    id2 = float(id2)
+def compareDate(id1, id2):
+    id1 = id1
+    id2 = id2
     if (id1 == id2):
         return 0
     elif (id1 > id2):
         return 1
     else:
         return -1
-
-def compareElement(element1, element2):
-    if (element1 == element2):
-        return 0
-    elif (element1 > element2):
-        return 1
-    else:
-        return -1
-
-def tripsVal(element1, element2):
-    if element1['value'] > element2['value']:
-        return True
-    return False
 
 def targetVal(element1, element2):
     if element1['weight'] > element2['weight']:

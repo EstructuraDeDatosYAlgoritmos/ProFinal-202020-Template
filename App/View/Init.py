@@ -24,13 +24,14 @@
  *
  """
 from App.View import Menu
-from App.Controller import DataBase
+from App.Controller import LoadData
 from App.Controller import Funtions
+from App.Model.Api.DataBase.DataBase import DataBase
 
 
 def ejecutarLoadData()->DataBase:
-    files = DataBase.getFiles()
+    files = LoadData.getFiles()
     inputs = Menu.fileMenu(files)
     print('\nIniciando Carga:')
-    data = DataBase.loadData(files[inputs])
+    data = LoadData.loadData(files[inputs])
     return data
