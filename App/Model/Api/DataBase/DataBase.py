@@ -24,7 +24,10 @@
  *
 """
 
+from App.Model.Api.Container.Route import Route
+from App.Model.Api.Concept.Trip import Trip
 from App.Model.Api.Container.DataCompany import DataCompany
+from App.Model.Api.Container.DataRoutes import DataRoutes
 from App.Model.Api.Container.DataPoints import DataPoints
 from App.Model.Api.Container.DataTaxi import DataTaxi
 from App.Model.Api.Concept.Company import Company
@@ -36,6 +39,7 @@ class DataBase:
         self.companies = DataCompany()
         self.taxis = DataTaxi()
         self.points = DataPoints()
+        self.routes = DataRoutes()
     
     def getCompany(self,name)->Company:
         return self.companies.getCompany(name)
@@ -55,6 +59,14 @@ class DataBase:
     def getPoints(self,date)->dict:
         return self.points.getDay(date).getPoints()
     
-    def getDays(self,date)->dict:
+    def getDays(self)->dict:
         return self.points.getDays()
- 
+
+    def getRoutes(self)->dict:
+        return self.routes.getRoutes()
+    
+    def getRoute(self,area1,area2)->Route:
+        return self.routes.getRoute(area1,area2)
+
+    def getTrip(self,area1,area2,time)->Trip:
+        return self.routes.getRoute(area1,area2).getTrip(time)

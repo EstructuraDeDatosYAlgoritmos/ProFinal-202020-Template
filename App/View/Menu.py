@@ -36,6 +36,7 @@ def mainMenu()->None:
         print("\nBienvenido")
         print("*******************************************")
         print("0- Salir")
+        print("3- Dar Mejor Horario")
         print("*******************************************")
         inputs = input('Selección: ')
         if (len(inputs)>0):

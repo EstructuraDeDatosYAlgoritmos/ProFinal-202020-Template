@@ -26,10 +26,10 @@
 import csv
 import os
 
-
-
 from App.View import config
 from App.Model import Add
+from App.Model import Analysis
+from App.Utils import Date
 from App.Model.Api.DataBase.DataBase import DataBase
 
 def getFiles()->list:
@@ -52,5 +52,7 @@ def loadData(filename)->bool:
             cont += 1
             Add.addService(Data,element)
         print(f"\tLineas cargadas: {cont}")
+
     return Data
 
+#'76.0','8.0',Date.newTime('21:45'),Date.newTime('23:30')

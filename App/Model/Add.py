@@ -6,6 +6,7 @@ def addService(database:DataBase,service:dict)->None:
     updateCompany(database,service)
     updateTaxi(database,service)
     updatePoints(database,service)
+    updateRoutes(database,service)
 
 def updateCompany(database:DataBase,service:dict)->None:
     name = service['company']
@@ -30,3 +31,13 @@ def updatePoints(database:DataBase,service:dict):
     wallet = database.getWallet(date,id)
     wallet.updateWallet(cash,miles)
 
+def updateRoutes(database:DataBase,service):
+    time = Date.getTime(service['trip_start_timestamp'])
+    area1 = service['pickup_community_area']
+    area2 = service['dropoff_community_area']
+    seconds = 0
+    if area1 != area2:
+        if service['trip_seconds'] != '':
+            seconds = float(service['trip_seconds'])
+        trip = database.getTrip(area1,area2,time)
+        trip.updateTrip(seconds)

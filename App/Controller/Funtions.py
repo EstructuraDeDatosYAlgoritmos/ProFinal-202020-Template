@@ -23,3 +23,14 @@
  * Dario Correal
  *
 """
+from App.Utils import Date
+
+from App.Model import Analysis
+
+def DarMejorHorario(database,area1,area2,time1,time2):
+    area1 = area1 + '.0'
+    area2 = area2 + '.0'    
+    time1 = Date.newTime(time1)
+    time2 = Date.newTime(time2)
+    trip = Analysis.getBestTime(database,area1,area2,time1,time2)
+    return Date.secondsToTime(trip[0]),trip[1]

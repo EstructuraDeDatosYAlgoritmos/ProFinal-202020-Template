@@ -35,3 +35,12 @@ def ejecutarLoadData()->DataBase:
     print('\nIniciando Carga:')
     data = LoadData.loadData(files[inputs])
     return data
+
+def ejecutarDarMejorHorario(database)->None:
+    area1 = input('Ingrese la Primera Area: ')
+    area2 = input('Ingrese la Segunda Area: ')
+    time1 = input('Ingrese la Primera Hora (HH:MM): ')
+    time2 = input('Ingrese la Segunda Hora (HH:MM): ')
+    
+    trip = Funtions.DarMejorHorario(database,area1,area2,time1,time2)
+    print(f'\n\t{trip[1]} es la mejor hora de salida, con un tiempo promedio de {trip[0]}')
