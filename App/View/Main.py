@@ -28,7 +28,8 @@ import sys
 
 from App.View import Init
 from App.View import Menu
-
+from DISClib.ADT import map
+from DISClib.ADT import list
 
 def main()->None:
     """
@@ -44,9 +45,15 @@ def main()->None:
         DataBase = Init.ejecutarLoadData()
         inputs = Menu.mainMenu() #imprimir el menu de opciones en consola
         if int(inputs) == 1:  #opcion 1 
-              Init.ejecutarParteA(DataBase)
+              
               taxis= DataBase.taxis.getTotal()
               companies= DataBase.companies.getTotal()
+              comp = DataBase.getCompanies()
+              values = map.valueSet(comp)
+              company = list.firstElement(values)
+              print(company.taxis)
+
               print("El total de taxis es de ", taxis, " y el total de compañias es de ",companies)
+              Init.ejecutarParteA(DataBase)
 if __name__ == "__main__":
     main()
