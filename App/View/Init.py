@@ -23,29 +23,14 @@
  * Dario Correal
  *
  """
-
-import config as cf
-from App import model
-import csv
-
-"""
-El controlador se encarga de mediar entre la vista y el modelo.
-Existen algunas operaciones en las que se necesita invocar
-el modelo varias veces o integrar varias de las respuestas
-del modelo en una sola respuesta.  Esta responsabilidad
-recae sobre el controlador.
-"""
-
-# ___________________________________________________
-#  Inicializacion del catalogo
-# ___________________________________________________
+from App.View import Menu
+from App.Controller import DataBase
+from App.Controller import Funtions
 
 
-# ___________________________________________________
-#  Funciones para la carga de datos y almacenamiento
-#  de datos en los modelos
-# ___________________________________________________
-
-# ___________________________________________________
-#  Funciones para consultas
-# ___________________________________________________
+def ejecutarLoadData()->DataBase:
+    files = DataBase.getFiles()
+    inputs = Menu.fileMenu(files)
+    print('\nIniciando Carga:')
+    data = DataBase.loadData(files[inputs])
+    return data

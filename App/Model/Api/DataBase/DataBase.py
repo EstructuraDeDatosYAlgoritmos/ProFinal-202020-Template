@@ -22,32 +22,18 @@
  *
  * Dario Correal
  *
- """
-
-
-import sys
-import config
-from App import controller
-from DISClib.ADT import stack
-import timeit
-assert config
-
-"""
-La vista se encarga de la interacción con el usuario.
-Presenta el menu de opciones  y  por cada seleccion
-hace la solicitud al controlador para ejecutar la
-operación seleccionada.
 """
 
-# ___________________________________________________
-#  Variables
-# ___________________________________________________
+from App.Model.Api.Container.DataCompany import DataCompany
+from App.Model.Api.Container.DataTaxi import DataTaxi
+class DataBase:
+    def __init__(self):
+        self.companies = DataCompany()
+        self.taxis = DataTaxi()
 
+    def addService(self,service:dict):
+        self.taxis.containsTaxi(service)
+        self.updateCompany(service)
+    
 
-# ___________________________________________________
-#  Menu principal
-# ___________________________________________________
-
-"""
-Menu principal
-"""
+    
