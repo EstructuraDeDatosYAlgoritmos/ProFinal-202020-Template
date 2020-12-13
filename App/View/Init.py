@@ -35,3 +35,14 @@ def ejecutarLoadData()->DataBase:
     print('\nIniciando Carga:')
     data = LoadData.loadData(files[inputs])
     return data
+
+def ejecutarParteA()->DataBase:    
+    top1 = int(input('Ingrese el número de compañías que quisiera buscar ordenadas por la cantidad de taxis afiliados (de mayor a menor): '))
+    top2 = int(input('Ingrese el número de compañías que quisiera buscar ordenadas por la cantidad de servicios prestados (de mayor a menor): '))
+    analysis = Funtions.ParteA(DataBase,top1,top2)
+
+def ejecutarEstacionesCriticas(dataBase)->None:
+    analysis = Funtions.estacionesCriticas(dataBase)
+    topIn = listiterator.newIterator(analysis[0]) 
+    topOut = listiterator.newIterator(analysis[1]) 
+    bot = listiterator.newIterator(analysis[2])     

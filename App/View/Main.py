@@ -38,11 +38,15 @@ def main()->None:
         Args: None
         Return: None 
     """
-    DataBase = Init.ejecutarLoadData()
+    
 
     while True:
+        DataBase = Init.ejecutarLoadData()
         inputs = Menu.mainMenu() #imprimir el menu de opciones en consola
-        
-
+        if int(inputs) == 1:  #opcion 1 
+              Init.ejecutarParteA(DataBase)
+              taxis= DataBase.taxis.getTotal()
+              companies= DataBase.companies.getTotal()
+              print("El total de taxis es de ", taxis, " y el total de compañias es de ",companies)
 if __name__ == "__main__":
     main()
