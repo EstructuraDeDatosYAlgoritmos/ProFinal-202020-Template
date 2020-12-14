@@ -45,15 +45,17 @@ def main()->None:
     while True:
         inputs = Menu.mainMenu() #imprimir el menu de opciones en consola
         if int(inputs) == 1:  #opcion 1 
-            taxis= database.taxis.getTotal()
-            companies= database.companies.getTotal()
-            print("El total de taxis es de ", taxis, " y el total de compañias es de ",companies)
+            Init.ejecutarParteA_info(database)
+        elif int(inputs) == 2:
             Init.ejecutarParteA_taxis(database)
+        elif int(inputs) == 3:
             Init.ejecutarParteA_services(database)
-        if int(inputs) == 2:
-            Init.ejecutar_mvpRango(database)
-        if int(inputs) == 3:
-            Init.ejecutarDarMejorHorario(database)
+        elif int(inputs) == 4:
+            Init.ejecutarMvpDia(database)
+        elif int(inputs) == 5:
+            Init.ejecutarMvpRango(database)
+        elif int(inputs) == 6:
+            Init.ejecutarMejorHorario(database)
 
 if __name__ == "__main__":
     main()

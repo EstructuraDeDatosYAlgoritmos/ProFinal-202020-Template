@@ -23,23 +23,49 @@
  * Dario Correal
  *
 """
-
-from App.Model.Api.DataBase.DataBase import DataBase
-
-
-from DISClib.ADT import graph
 from DISClib.ADT import map 
 from DISClib.ADT import list 
-from DISClib.ADT import stack
-from DISClib.ADT import queue
 from DISClib.ADT import orderedmap
-from DISClib.DataStructures import listiterator 
-from DISClib.DataStructures import edge 
 from DISClib.DataStructures import mapentry
-from DISClib.Algorithms.Graphs import scc
+from DISClib.DataStructures import listiterator as lti
 from DISClib.Algorithms.Sorting import mergesort as sort
 
 from App.Model import Comparation as cmp
+from App.Model.Api.DataBase.DataBase import DataBase
+
+
+def getPoints(database:DataBase,date)->dict:
+    day = database.getPoints(date)
+    day = map.valueSet(day)
+    sort.mergesort(day,cmp.wallet)
+    return day
+
+def getPointsV2(database:DataBase,date1,date2)->dict:
+    days = database.getDays()
+    days = orderedmap.values(days,date1,date2)
+    days = lti.newIterator(days)
+    top = map.newMap(comparefunction=cmp.compareId)
+    while lti.hasNext(days):
+        day = lti.next(days).points
+        day = map.valueSet(day)
+        day = lti.newIterator(day)
+        while lti.hasNext(day):
+            wallet = lti.next(day)
+            if map.contains(top,wallet.id):
+                node = map.get(top,wallet.id)
+                value = mapentry.getValue(node)
+                value['points'] += wallet.points
+            else:
+                value = {
+                    'id' : wallet.id,
+                    'points': wallet.points
+                    }
+                
+                map.put(top,wallet.id,value)
+
+    top = map.valueSet(top)
+    sort.mergesort(top,cmp.points)
+    return top
 
 def getBestTime(database:DataBase,area1:str,area2:str,time1,time2)->dict:
     route = database.getRoute(area1,area2).getRoute()

@@ -23,40 +23,58 @@
  * Dario Correal
  *
 """
+from DISClib.ADT import list as lt
 from DISClib.ADT import map
-from DISClib.ADT import list
-from DISClib.Algorithms.Sorting import mergesort
+from DISClib.Algorithms.Sorting import mergesort as sort
 
-from App.Utils import Date
-from App.Model import Analysis
 from App.Model import Comparation
+from App.Model import Analysis
+from App.Utils import Date
 
-def DarMejorHorario(database,area1,area2,time1,time2):
+
+def parteA_taxis(DataBase, M):
+    comp = DataBase.getCompanies()
+    values = map.valueSet(comp)
+    sort.mergesort(values, Comparation.compareTaxis)
+    respuesta = []
+    while (M > len(respuesta)) and (not lt.isEmpty(values)):
+        company = lt.removeFirst(values)
+        respuesta.append((company.name, company.taxis))
+    return respuesta
+
+def parteA_services(DataBase, N):
+    comp = DataBase.getCompanies()
+    values = map.valueSet(comp)
+    sort.mergesort(values, Comparation.compareServices)
+    respuesta = []
+    while (N > len(respuesta)) and (not lt.isEmpty(values)):
+        company = lt.removeFirst(values)
+        respuesta.append((company.name, company.services))
+    return respuesta
+
+def mvpDia(database,date,n):
+    date = Date.newDate(date)
+    wallets = Analysis.getPoints(database,date)
+    values = []
+    while (n > len(values)) and (not lt.isEmpty(wallets)):
+        wallet = lt.removeFirst(wallets)
+        values.append((wallet.id,wallet.points))
+    return values
+
+def mvpRango(database,date1,date2,m):
+    date1 = Date.newDate(date1)
+    date2 = Date.newDate(date2)
+    wallets = Analysis.getPointsV2(database,date1,date2)
+    values = []
+    while (m > len(values)) and (not lt.isEmpty(wallets)):
+        wallet = lt.removeFirst(wallets)
+        values.append((wallet['id'],wallet['points']))
+    return values
+
+def mejorHorario(database,area1,area2,time1,time2):
     area1 = area1 + '.0'
     area2 = area2 + '.0'    
     time1 = Date.newTime(time1)
     time2 = Date.newTime(time2)
     trip = Analysis.getBestTime(database,area1,area2,time1,time2)
     return Date.secondsToTime(trip[0]),trip[1]
-
-def parteA_taxis(DataBase, M):
-    comp = DataBase.getCompanies()
-    values = map.valueSet(comp)
-    mergesort.mergesort(values, Comparation.compareTaxis)
-    respuesta = {}
-    i = 0
-    while M>i:
-        company = list.removeFirst(values)
-        print(company.name, company.taxis)
-        i+=1
-
-def parteA_services(DataBase, N):
-    comp = DataBase.getCompanies()
-    values = map.valueSet(comp)
-    mergesort.mergesort(values, Comparation.compareServices)
-    respuesta = {}
-    i = 0
-    while N>i:
-        company = list.removeFirst(values)
-        print(company.name, company.services)
-        i+=1

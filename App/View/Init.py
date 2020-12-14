@@ -32,34 +32,59 @@ from App.Model.Api.DataBase.DataBase import DataBase
 def ejecutarLoadData()->DataBase:
     files = LoadData.getFiles()
     inputs = Menu.fileMenu(files)
-    print('\nIniciando Carga:')
+    print('\nCarga Iniciada\n')
     data = LoadData.loadData(files[inputs])
     return data
 
-def ejecutarParteA_taxis(DataBase)->DataBase:    
+def ejecutarParteA_info(database)->None:
+    taxis= database.taxis.getTotal()
+    companies= database.companies.getTotal()
+    print("\n\tEl total de taxis es: ",taxis) 
+    print("\tEl total de compañias es de: ",companies)
+
+def ejecutarParteA_taxis(database)->None:    
     M = int(input('Ingrese el número de compañías que quisiera buscar ordenadas por la cantidad de taxis afiliados (de mayor a menor): '))
-    print(Funtions.parteA_taxis(DataBase, M))
-def ejecutarParteA_services(DataBase)->DataBase:    
+    values = Funtions.parteA_taxis(database, M)
+    i = 1
+    for value in values:
+        print(f'\n\t{i}. {value[0]}: \n\t   Puntos: {value[1]}')
+        i += 1     
+
+def ejecutarParteA_services(database)->None:    
     N = int(input('Ingrese el número de compañías que quisiera buscar ordenadas por la cantidad de servicios prestados (de mayor a menor): '))
-    print(Funtions.parteA_services(DataBase, N))   
+    values = Funtions.parteA_services(database, N)
+    i = 1
+    for value in values:
+        print(f'\n\t{i}. {value[0]}: \n\t   Puntos: {value[1]}')
+        i += 1      
 
-def ejecutar_mvpRango(DataBase)->DataBase:
-    M = int(input('Ingrese el número de taxis con más puntos que desea conocer: '))
-    fechai = input('Ingrese la fecha inicial deseada en forma YYYY-MM-DD: ')
-    fechaf = input('Ingrese la fecha final deseada en forma YYYY-MM-DD: ')
-    print(Funtions.mvpRango(DataBase, M, fechai, fechaf))
-    
-def ejecutarEstacionesCriticas(dataBase)->None:
-    analysis = Funtions.estacionesCriticas(dataBase)
-    topIn = listiterator.newIterator(analysis[0]) 
-    topOut = listiterator.newIterator(analysis[1]) 
-    bot = listiterator.newIterator(analysis[2])     
 
-def ejecutarDarMejorHorario(database)->None:
+def ejecutarMvpDia(database):
+    date = input('Ingrese la Fecha (YYYY-MM-DD): ')
+    n = int(input('Ingrese el numero de puestos: '))
+
+    wallets = Funtions.mvpDia(database,date,n)
+    i = 1
+    for wallet in wallets:
+        print(f'\n\t{i}. Puntos: {wallet[1]}: \n\t   {wallet[0]}')
+        i += 1
+
+def ejecutarMvpRango(database):
+    date1 = input('Ingrese la Fecha Inicial (YYYY-MM-DD): ')
+    date2 = input('Ingrese la Fecha Final (YYYY-MM-DD): ')
+    m = int(input('Ingrese el numero de puestos: '))
+
+    wallets = Funtions.mvpRango(database,date1,date2,m)
+    i = 1
+    for wallet in wallets:
+        print(f'\n\t{i}. Puntos: {wallet[1]}: \n\t   {wallet[0]}')
+        i += 1
+
+def ejecutarMejorHorario(database)->None:
     area1 = input('Ingrese la Primera Area: ')
     area2 = input('Ingrese la Segunda Area: ')
     time1 = input('Ingrese la Primera Hora (HH:MM): ')
     time2 = input('Ingrese la Segunda Hora (HH:MM): ')
     
-    trip = Funtions.DarMejorHorario(database,area1,area2,time1,time2)
-    print(f'\n\t{trip[1]} es la mejor hora de salida, con un tiempo promedio de {trip[0]}')
+    trip = Funtions.mejorHorario(database,area1,area2,time1,time2)
+    print(f'\n\tMejor hora de salida: {trip[1]} \n\tTiempo promedio: {trip[0]}')

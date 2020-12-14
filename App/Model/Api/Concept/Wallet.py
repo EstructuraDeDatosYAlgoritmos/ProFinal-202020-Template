@@ -13,8 +13,8 @@ class Wallet:
         return self.id
 
     def updateWallet(self,cash:float, miles:float):
-        self.cash += cash
-        self.miles += miles
-        self.services += 1
-        if self.miles != 0 and self.cash != 0:
+        if miles != 0 and cash != 0:
+            self.cash += cash
+            self.miles += miles
+            self.services += 1
             self.points = self.getPoints()
