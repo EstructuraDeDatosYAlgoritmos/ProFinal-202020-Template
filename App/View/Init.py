@@ -36,11 +36,19 @@ def ejecutarLoadData()->DataBase:
     data = LoadData.loadData(files[inputs])
     return data
 
-def ejecutarParteA()->DataBase:    
-    top1 = int(input('Ingrese el número de compañías que quisiera buscar ordenadas por la cantidad de taxis afiliados (de mayor a menor): '))
-    top2 = int(input('Ingrese el número de compañías que quisiera buscar ordenadas por la cantidad de servicios prestados (de mayor a menor): '))
-    analysis = Funtions.ParteA(DataBase,top1,top2)
+def ejecutarParteA_taxis(DataBase)->DataBase:    
+    M = int(input('Ingrese el número de compañías que quisiera buscar ordenadas por la cantidad de taxis afiliados (de mayor a menor): '))
+    print(Funtions.parteA_taxis(DataBase, M))
+def ejecutarParteA_services(DataBase)->DataBase:    
+    N = int(input('Ingrese el número de compañías que quisiera buscar ordenadas por la cantidad de servicios prestados (de mayor a menor): '))
+    print(Funtions.parteA_services(DataBase, N))   
 
+def ejecutar_mvpRango(DataBase)->DataBase:
+    M = int(input('Ingrese el número de taxis con más puntos que desea conocer: '))
+    fechai = input('Ingrese la fecha inicial deseada en forma YYYY-MM-DD: ')
+    fechaf = input('Ingrese la fecha final deseada en forma YYYY-MM-DD: ')
+    print(Functions.mvpRango(DataBase, M, fechai, fechaf))
+    
 def ejecutarEstacionesCriticas(dataBase)->None:
     analysis = Funtions.estacionesCriticas(dataBase)
     topIn = listiterator.newIterator(analysis[0]) 

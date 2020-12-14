@@ -46,14 +46,13 @@ def main()->None:
         inputs = Menu.mainMenu() #imprimir el menu de opciones en consola
         if int(inputs) == 1:  #opcion 1 
               
-              taxis= DataBase.taxis.getTotal()
-              companies= DataBase.companies.getTotal()
-              comp = DataBase.getCompanies()
-              values = map.valueSet(comp)
-              company = list.firstElement(values)
-              print(company.taxis)
+            taxis= DataBase.taxis.getTotal()
+            companies= DataBase.companies.getTotal()
+            print("El total de taxis es de ", taxis, " y el total de compañias es de ",companies)
+            Init.ejecutarParteA_taxis(DataBase)
+            Init.ejecutarParteA_services(DataBase)
+        if int(inputs) == 2:
+            Init.ejecutar_mvpRango(DataBase)
 
-              print("El total de taxis es de ", taxis, " y el total de compañias es de ",companies)
-              Init.ejecutarParteA(DataBase)
 if __name__ == "__main__":
     main()

@@ -22,3 +22,13 @@ def targetVal(element1, element2):
     if element1['weight'] > element2['weight']:
         return True
     return False
+
+def compareTaxis(element1, element2):
+    if element1.taxis > element2.taxis:
+        return True
+    return False
+
+def compareServices(element1, element2):
+    if element1.services > element2.services:
+        return True
+    return False

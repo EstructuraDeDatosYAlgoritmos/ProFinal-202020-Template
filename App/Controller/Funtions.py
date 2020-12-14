@@ -23,3 +23,30 @@
  * Dario Correal
  *
 """
+from DISClib.ADT import map
+from DISClib.ADT import list
+from DISClib.Algorithms.Sorting import mergesort
+from App.Model import Comparation
+
+
+def parteA_taxis(DataBase, M):
+    comp = DataBase.getCompanies()
+    values = map.valueSet(comp)
+    mergesort.mergesort(values, Comparation.compareTaxis)
+    respuesta = {}
+    i = 0
+    while M>i:
+        company = list.removeFirst(values)
+        print(company.name, company.taxis)
+        i+=1
+
+def parteA_services(DataBase, N):
+    comp = DataBase.getCompanies()
+    values = map.valueSet(comp)
+    mergesort.mergesort(values, Comparation.compareServices)
+    respuesta = {}
+    i = 0
+    while N>i:
+        company = list.removeFirst(values)
+        print(company.name, company.services)
+        i+=1
