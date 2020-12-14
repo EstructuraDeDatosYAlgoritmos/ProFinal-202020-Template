@@ -42,5 +42,25 @@ def ejecutarDarMejorHorario(database)->None:
     time1 = input('Ingrese la Primera Hora (HH:MM): ')
     time2 = input('Ingrese la Segunda Hora (HH:MM): ')
     
-    trip = Funtions.DarMejorHorario(database,area1,area2,time1,time2)
+    trip = Funtions.mejorHorario(database,area1,area2,time1,time2)
     print(f'\n\t{trip[1]} es la mejor hora de salida, con un tiempo promedio de {trip[0]}')
+
+def ejecutarMvpDia(database):
+    date = input('Ingrese la Fecha (YYYY-MM-DD): ')
+    n = int(input('Ingrese los puestos: '))
+
+    wallets = Funtions.mvpDia(database,date,n)
+    i = 1
+    for wallet in wallets:
+        print(f'\t{i}. {wallet[1]}: \n{wallet[0]}')
+        i += 1
+def ejecutarMvpRango(database):
+    date1 = input('Ingrese la Fecha Inicial (YYYY-MM-DD): ')
+    date2 = input('Ingrese la Fecha Final (YYYY-MM-DD): ')
+    m = int(input('Ingrese los puestos: '))
+
+    wallets = Funtions.mvpRango(database,date1,date2,m)
+    i = 1
+    for wallet in wallets:
+        print(f'\t{i}. {wallet[1]}: \n{wallet[0]}')
+        i += 1

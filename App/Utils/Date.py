@@ -13,7 +13,7 @@ def newTime(time:str):
     return dt.time()
 
 def newDate(date:str):
-    dt = datetime.datetime.strptime(date, '%Y-%m-%dT')
+    dt = datetime.datetime.strptime(date, '%Y-%m-%d')
     return dt.date()
 
 def secondsToTime(seconds:int)->datetime:

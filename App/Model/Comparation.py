@@ -1,3 +1,4 @@
+from App.Model.Api.Concept.Wallet import Wallet
 from App.Model.Api.Concept.Trip import Trip
 from DISClib.DataStructures import mapentry
 
@@ -21,5 +22,15 @@ def compareDate(id1, id2):
 
 def trip(element1:Trip, element2:Trip):
     if element1.seconds > element2.seconds:
+        return True
+    return False
+
+def wallet(element1:Wallet, element2:Wallet):
+    if element1.points > element2.points:
+        return True
+    return False
+
+def points(element1:Wallet, element2:Wallet):
+    if element1['points'] > element2['points']:
         return True
     return False

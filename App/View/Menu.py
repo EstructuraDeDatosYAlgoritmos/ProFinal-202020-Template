@@ -36,7 +36,12 @@ def mainMenu()->None:
         print("\nBienvenido")
         print("*******************************************")
         print("0- Salir")
-        print("3- Dar Mejor Horario")
+        print("\tParte A")
+        print("\tParte B")
+        print("2- Taxistas mas valorados del dia")
+        print("3- Taxistas mas valorados (Rango)")
+        print("\tParte C")
+        print("4- Dar Mejor Horario")
         print("*******************************************")
         inputs = input('Selección: ')
         if (len(inputs)>0):

@@ -23,14 +23,36 @@
  * Dario Correal
  *
 """
+from DISClib.ADT import list as lt
+
+from App.Model.Comparation import wallet
 from App.Utils import Date
 
 from App.Model import Analysis
 
-def DarMejorHorario(database,area1,area2,time1,time2):
+def mejorHorario(database,area1,area2,time1,time2):
     area1 = area1 + '.0'
     area2 = area2 + '.0'    
     time1 = Date.newTime(time1)
     time2 = Date.newTime(time2)
     trip = Analysis.getBestTime(database,area1,area2,time1,time2)
     return Date.secondsToTime(trip[0]),trip[1]
+
+def mvpDia(database,date,n):
+    date = Date.newDate(date)
+    wallets = Analysis.getPoints(database,date)
+    values = []
+    while (n > len(values)) and (not lt.isEmpty(wallets)):
+        wallet = lt.removeFirst(wallets)
+        values.append((wallet.id,wallet.points))
+    return values
+
+def mvpRango(database,date1,date2,m):
+    date1 = Date.newDate(date1)
+    date2 = Date.newDate(date2)
+    wallets = Analysis.getPointsV2(database,date1,date2)
+    values = []
+    while (m > len(values)) and (not lt.isEmpty(wallets)):
+        wallet = lt.removeFirst(wallets)
+        values.append((wallet['id'],wallet['points']))
+    return values

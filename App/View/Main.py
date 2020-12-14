@@ -42,7 +42,12 @@ def main()->None:
 
     while True:
         inputs = Menu.mainMenu() #imprimir el menu de opciones en consola
+
+        if inputs == 2:
+            Init.ejecutarMvpDia(database)
         if inputs == 3:
+            Init.ejecutarMvpRango(database)
+        if inputs == 4:
             Init.ejecutarDarMejorHorario(database)
 
 if __name__ == "__main__":
