@@ -23,3 +23,13 @@ def trip(element1:Trip, element2:Trip):
     if element1.seconds > element2.seconds:
         return True
     return False
+
+def compareTaxis(element1, element2):
+    if element1.taxis > element2.taxis:
+        return True
+    return False
+
+def compareServices(element1, element2):
+    if element1.services > element2.services:
+        return True
+    return False

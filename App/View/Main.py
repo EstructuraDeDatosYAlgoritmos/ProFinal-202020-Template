@@ -28,7 +28,8 @@ import sys
 
 from App.View import Init
 from App.View import Menu
-
+from DISClib.ADT import map
+from DISClib.ADT import list
 
 def main()->None:
     """
@@ -39,10 +40,19 @@ def main()->None:
         Return: None 
     """
     database = Init.ejecutarLoadData()
+    
 
     while True:
         inputs = Menu.mainMenu() #imprimir el menu de opciones en consola
-        if inputs == 3:
+        if int(inputs) == 1:  #opcion 1 
+            taxis= database.taxis.getTotal()
+            companies= database.companies.getTotal()
+            print("El total de taxis es de ", taxis, " y el total de compañias es de ",companies)
+            Init.ejecutarParteA_taxis(database)
+            Init.ejecutarParteA_services(database)
+        if int(inputs) == 2:
+            Init.ejecutar_mvpRango(database)
+        if int(inputs) == 3:
             Init.ejecutarDarMejorHorario(database)
 
 if __name__ == "__main__":

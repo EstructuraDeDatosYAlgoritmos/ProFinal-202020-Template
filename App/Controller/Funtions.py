@@ -23,9 +23,13 @@
  * Dario Correal
  *
 """
-from App.Utils import Date
+from DISClib.ADT import map
+from DISClib.ADT import list
+from DISClib.Algorithms.Sorting import mergesort
 
+from App.Utils import Date
 from App.Model import Analysis
+from App.Model import Comparation
 
 def DarMejorHorario(database,area1,area2,time1,time2):
     area1 = area1 + '.0'
@@ -34,3 +38,25 @@ def DarMejorHorario(database,area1,area2,time1,time2):
     time2 = Date.newTime(time2)
     trip = Analysis.getBestTime(database,area1,area2,time1,time2)
     return Date.secondsToTime(trip[0]),trip[1]
+
+def parteA_taxis(DataBase, M):
+    comp = DataBase.getCompanies()
+    values = map.valueSet(comp)
+    mergesort.mergesort(values, Comparation.compareTaxis)
+    respuesta = {}
+    i = 0
+    while M>i:
+        company = list.removeFirst(values)
+        print(company.name, company.taxis)
+        i+=1
+
+def parteA_services(DataBase, N):
+    comp = DataBase.getCompanies()
+    values = map.valueSet(comp)
+    mergesort.mergesort(values, Comparation.compareServices)
+    respuesta = {}
+    i = 0
+    while N>i:
+        company = list.removeFirst(values)
+        print(company.name, company.services)
+        i+=1

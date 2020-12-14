@@ -35,6 +35,9 @@ def mainMenu()->None:
     while switch:
         print("\nBienvenido")
         print("*******************************************")
+        print("1- Parte A")
+        print("2- Parte B")
+        print("3- Parte C")
         print("0- Salir")
         print("3- Dar Mejor Horario")
         print("*******************************************")
